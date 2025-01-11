@@ -2,19 +2,6 @@
 
 This project demonstrates the use of the Random Forest algorithm to predict the safety of cars based on various features. The analysis is conducted using the Car Evaluation Data Set from the UCI Machine Learning Repository.
 
-## Table of Contents
-1. [Introduction](#introduction)
-2. [Algorithm Intuition](#algorithm-intuition)
-3. [Advantages and Disadvantages](#advantages-and-disadvantages)
-4. [Feature Selection](#feature-selection)
-5. [Problem Statement](#problem-statement)
-6. [Dataset Description](#dataset-description)
-7. [Installation](#installation)
-8. [Usage](#usage)
-9. [Results](#results)
-10. [Conclusion](#conclusion)
-11. [License](#license)
-12. [Acknowledgments](#acknowledgments)
 
 ## Introduction
 Random Forest is a supervised machine learning algorithm based on ensemble learning. This project builds two Random Forest Classifier models to predict car safety:
