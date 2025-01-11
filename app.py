@@ -1,38 +1,19 @@
-import pandas as pd
 import joblib
+import numpy as np
 
-# Load the trained Random Forest model
-model = joblib.load('random_forest_model.pkl')
+# Load the saved model
+rfc_loaded = joblib.load('random_forest_model.pkl')
 
-# Function to validate input features
-def validate_features(input_df: pd.DataFrame, expected_features: list):
-    missing_features = set(expected_features) - set(input_df.columns)
-    extra_features = set(input_df.columns) - set(expected_features)
-    if missing_features or extra_features:
-        raise ValueError(
-            f"Feature mismatch. Missing: {missing_features}, Extra: {extra_features}"
-        )
+# Example input data (ensure this matches the feature set used in training)
+# For example, the model might expect features like [Engine size, Weight, Safety rating, etc.]
+# You need to replace this with the actual input data you're using
+input_data = np.array([[1500, 1200, 3, 8]])  # Replace with your car's feature values
 
-# Function to predict safety
-def predict_safety(input_params: dict) -> str:
-    selected_features = ['buying', 'doors', 'lug_boot', 'maint', 'persons']
-    input_df = pd.DataFrame([input_params])
-    input_df_selected = input_df[selected_features]
-    validate_features(input_df_selected, selected_features)
-    prediction = model.predict(input_df_selected)
-    return "Safe" if prediction[0] == 1 else "Unsafe"
+# Predict using the loaded model
+prediction = rfc_loaded.predict(input_data)
 
-# Example usage
-if __name__ == "__main__":
-    input_parameters = {
-        'buying': 1,
-        'doors': 4,
-        'lug_boot': 1,
-        'maint': 2,
-        'persons': 2,
-    }
-    try:
-        prediction_result = predict_safety(input_parameters)
-        print("Prediction result:", prediction_result)
-    except ValueError as e:
-        print("Error:", e)
+# Output the predicted result
+if prediction == 1:
+    print("The car is safe.")
+else:
+    print("The car is not safe.")
